@@ -1,38 +1,71 @@
 ---
-// 引数: images (画像のパスの配列), isComparison (横並びフラグ)
 interface Props {
   images: string[];
   isComparison?: boolean;
 }
+
 const { images, isComparison = false } = Astro.props;
 ---
 
 <div class={`image-container ${isComparison ? 'grid-2' : 'grid-1'}`}>
-  {images.map((src) => (
-    <div class="image-wrapper">
-      <img src={src} alt="AtmosFiore Detail" loading="lazy" />
-    </div>
-  ))}
+  {
+    images.map((src) => (
+      <div class="image-wrapper">
+        <img src={src} alt="" loading="lazy" />
+      </div>
+    ))
+  }
 </div>
 
 <style>
-  .image-container { 
-    display: flex; 
-    gap: 1rem; 
-    width: 100%; 
-    align-items: flex-start; /* 上揃え */
-    flex-wrap: nowrap;       /* 改行させない */
-    margin: 1rem 0;
-  }
-  
-  .image-wrapper { 
-    flex: 1; 
-    min-width: 0;            /* flexの子要素がはみ出さないようにする */
-  }
+.image-container {
+  width: 100%;
+  margin: 1.5rem 0;
+}
 
-  img { 
-    width: 100%; 
-    height: auto; 
-    display: block;          /* 必須：余計な隙間を消す */
+.grid-1 {
+  display: block;
+}
+
+.grid-2 {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 1rem;
+
+  /* 高さを揃える */
+  align-items: stretch;
+}
+
+.image-wrapper {
+  margin: 0;
+  padding: 0;
+
+  /* ← これ重要 */
+  line-height: 0;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+}
+
+.image-wrapper img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  vertical-align: top;
+
+  border-radius: inherit;
+
+  background: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
   }
+}
 </style>

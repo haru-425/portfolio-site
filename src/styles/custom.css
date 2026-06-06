@@ -155,3 +155,35 @@ tr:last-child td {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(245, 158, 11, 0.4);
 }
+/* 比較画像 */
+.image-container.grid-2 {
+  display: grid !important;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 1rem;
+
+  width: 100%;
+
+  max-width: 100%;
+
+  margin: 1.5rem 0;
+}
+
+.image-container.grid-2 .image-wrapper {
+  min-width: 0;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+}
+
+.image-container img {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  object-fit: contain;
+}
