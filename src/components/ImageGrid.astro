@@ -1,0 +1,38 @@
+---
+// 引数: images (画像のパスの配列), isComparison (横並びフラグ)
+interface Props {
+  images: string[];
+  isComparison?: boolean;
+}
+const { images, isComparison = false } = Astro.props;
+---
+
+<div class={`image-container ${isComparison ? 'grid-2' : 'grid-1'}`}>
+  {images.map((src) => (
+    <div class="image-wrapper">
+      <img src={src} alt="AtmosFiore Detail" loading="lazy" />
+    </div>
+  ))}
+</div>
+
+<style>
+  .image-container { 
+    display: flex; 
+    gap: 1rem; 
+    width: 100%; 
+    align-items: flex-start; /* 上揃え */
+    flex-wrap: nowrap;       /* 改行させない */
+    margin: 1rem 0;
+  }
+  
+  .image-wrapper { 
+    flex: 1; 
+    min-width: 0;            /* flexの子要素がはみ出さないようにする */
+  }
+
+  img { 
+    width: 100%; 
+    height: auto; 
+    display: block;          /* 必須：余計な隙間を消す */
+  }
+</style>

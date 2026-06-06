@@ -37,6 +37,12 @@ export default defineConfig({
 						{ autogenerate: { directory: 'reference' } } // referenceフォルダ内を自動メニュー化
 					],
 				},
+				{
+					label: 'Debug用',
+					items: [
+						{ autogenerate: { directory: 'debug' } } // debugフォルダ内を自動メニュー化
+					],
+				},
 			],
 		}),
 	],
