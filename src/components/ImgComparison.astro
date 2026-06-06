@@ -1,6 +1,5 @@
 ---
-import "img-comparison-slider";
-
+// Props
 interface Props {
   leftImage: string;
   rightImage: string;
@@ -19,20 +18,13 @@ const {
 ---
 
 <img-comparison-slider class={`comparison-slider ${className}`}>
-  <img
-    slot="first"
-    src={leftImage}
-    alt={altLeft}
-    loading="lazy"
-  />
-
-  <img
-    slot="second"
-    src={rightImage}
-    alt={altRight}
-    loading="lazy"
-  />
+  <img slot="first" src={leftImage} alt={altLeft} />
+  <img slot="second" src={rightImage} alt={altRight} />
 </img-comparison-slider>
+
+<script>
+  import "img-comparison-slider";
+</script>
 
 <style>
 .comparison-slider {
@@ -40,30 +32,21 @@ const {
 
   width: 100%;
 
-  /* ← 800px固定を解除 */
-  max-width: 100%;
-
-  margin: 1.5rem 0;
+  max-width: none;
 
   overflow: hidden;
 
   border-radius: 12px;
 
-  /* ベースラインずれ防止 */
-  line-height: 0;
+  margin: 1.5rem 0;
 }
 
-/*
-  重要:
-  img-comparison-slider が内部で
-  サイズ同期するので触りすぎない
-*/
+/* ← ここが重要 */
 .comparison-slider img {
   display: block;
 
+  /* width指定しない */
   max-width: 100%;
-
-  width: auto;
 
   height: auto;
 
@@ -72,14 +55,18 @@ const {
   padding: 0;
 
   border: 0;
-
-  vertical-align: top;
 }
 
-/* モバイル */
-@media (max-width: 768px) {
-  .comparison-slider {
-    margin: 1rem 0;
-  }
+/* ← ShadowDOMのズレ補正 */
+img-comparison-slider::part(first) {
+  top: 0;
+}
+
+img-comparison-slider::part(second) {
+  top: 0;
+}
+
+img-comparison-slider::part(container) {
+  line-height: 0;
 }
 </style>
