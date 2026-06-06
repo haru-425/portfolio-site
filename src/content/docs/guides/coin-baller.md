@@ -1,5 +1,5 @@
 ---
-title: "作品研究：Coin Baller (3D Roguelike)"
+title: "チーム制作：Coin Baller (3D Roguelike)"
 description: スマートボールとピンボールの要素を融合した、3Dローグライクゲームの開発実績。
 sidebar:
   order: 3

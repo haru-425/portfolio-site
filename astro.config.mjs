@@ -26,7 +26,7 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
-					label: 'プロジェクト・自己紹介',
+					label: 'プロジェクト',
 					items: [
 						{ autogenerate: { directory: 'guides' } } // guidesフォルダ内を自動メニュー化
 					],
