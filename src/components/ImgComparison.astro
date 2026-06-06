@@ -1,0 +1,85 @@
+---
+import "img-comparison-slider";
+
+interface Props {
+  leftImage: string;
+  rightImage: string;
+  altLeft?: string;
+  altRight?: string;
+  className?: string;
+}
+
+const {
+  leftImage,
+  rightImage,
+  altLeft = "Before",
+  altRight = "After",
+  className = "",
+} = Astro.props;
+---
+
+<img-comparison-slider class={`comparison-slider ${className}`}>
+  <img
+    slot="first"
+    src={leftImage}
+    alt={altLeft}
+    loading="lazy"
+  />
+
+  <img
+    slot="second"
+    src={rightImage}
+    alt={altRight}
+    loading="lazy"
+  />
+</img-comparison-slider>
+
+<style>
+.comparison-slider {
+  display: block;
+
+  width: 100%;
+
+  /* ← 800px固定を解除 */
+  max-width: 100%;
+
+  margin: 1.5rem 0;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  /* ベースラインずれ防止 */
+  line-height: 0;
+}
+
+/*
+  重要:
+  img-comparison-slider が内部で
+  サイズ同期するので触りすぎない
+*/
+.comparison-slider img {
+  display: block;
+
+  max-width: 100%;
+
+  width: auto;
+
+  height: auto;
+
+  margin: 0;
+
+  padding: 0;
+
+  border: 0;
+
+  vertical-align: top;
+}
+
+/* モバイル */
+@media (max-width: 768px) {
+  .comparison-slider {
+    margin: 1rem 0;
+  }
+}
+</style>
